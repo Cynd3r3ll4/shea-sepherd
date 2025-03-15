@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Shea Sepherd</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+</h:head>
+
+<h:body>
+
+	<div class="header">
+		<img id="logo" src="logo.png" alt="Logo"/>
+		<div class="right">
+		<h:form styleClass="homebutton">
+			<h:commandLink  action="index?faces-redirect=true">
+				<img id="home" src="homebutton.png"/>
+			</h:commandLink>
+		</h:form>
+		<h1 id="pageName">Shea Sepherd</h1>
+		</div>
+	</div>
+	
+	<div class="main">
+	
+		<div class="description">
+			<h1>Willkommen im Login-Bereich</h1>
+			<p>Hier können Sie die Liste aller Netze einsehen, Sichtungen hinzufügen und Bergungen ankündigen.</p>
+			<p>Alle von Ihnen zur Bergung angemeldeten Netze finden Sie <p:commandLink styleClass="link" value="hier" action="#{navigationController.aufträge()}" />.</p>
+		</div>
+		
+	<div class="content">
+	
+	<h:form id="eingabe">
+	
+		<h:panelGrid columns="2" styleClass="eingabe">
+	
+			<h:outputLabel value="Längengrad:" for="lat"/>
+      		<p:inputText id="lat" value="#{netzlisteController.neuesNetz.latitude}" size="15" required="true" label="Längengrad">
+      			<f:validateDoubleRange minimum = "-90.000000" maximum = "90.000000" />
+      		</p:inputText>
+
+      	
+      		<h:outputLabel value="Breitengrad:" for="long" />
+      		<p:inputText id="long" value="#{netzlisteController.neuesNetz.longitude}" size="15" required="true" label="Breitengrad">
+      			<f:validateDoubleRange minimum = "-180.000000" maximum = "180.000000" />
+      		</p:inputText>
+      	
+      		<h:outputLabel value="geschätzte Größe (m²):" for="größe" />
+      		<p:inputText id="größe" value="#{netzlisteController.neuesNetz.größe}" size="15" required="true" label="Größe">
+      			<f:validateLongRange minimum = "1" />
+      		</p:inputText>
+      		
+		</h:panelGrid>
+		
+    	  	<p:message for="lat"><p:autoUpdate /></p:message>
+      		<p:message for="long"><p:autoUpdate /></p:message>
+      		<p:message for="größe"><p:autoUpdate /></p:message>
+      		
+		<p:commandButton styleClass="action" value="Netz melden" action="#{netzlisteController.netzMeldenLogin}"/>
+		
+	</h:form>
+	
+	<h:dataTable var="netz" value="#{netzlisteController.netzliste}"
+               styleClass="netzliste" columnClasses="nr">
+    	<h:column>
+      		<f:facet name="header">Nr</f:facet>
+     		<h:outputText value="#{netz.nr}"/>
+    	</h:column>
+    	
+    	<h:column>
+      		<f:facet name="header">Standort</f:facet>
+      		<h:outputText value="#{netz.getStandort()}"/>
+    	</h:column>
+    	
+    	<h:column>
+     		 <f:facet name="header">Größe</f:facet>
+     		 <h:outputText value="#{netz.größe} m²"/>
+    	</h:column>
+    	
+    	<h:column>
+     		 <f:facet name="header">Status</f:facet>
+      		<h:outputText value="#{netz.status}"/>
+    	</h:column>
+    	
+    	<h:column>
+     		 <f:facet name="header">Bergung ankündigen</f:facet>
+      		<h:form>
+				<h:commandLink  action="#{netzlisteController.bergungAnmelden(netz)}" rendered="#{netzlisteController.statusGemeldet(netz)}">
+					<img id="icon" src="haken.png"/>
+				</h:commandLink>
+			</h:form>
+    	</h:column>
+    	
+  	</h:dataTable>
+	
+	</div>
+	
+	</div>
+	
+</h:body>
+
+<footer>
+<p>Diese Seite ist nur ein PROTOTYP! Hier erfolgt der Verweis zum Impressum.</p>
+</footer>
+
+</html>

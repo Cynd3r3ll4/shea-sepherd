@@ -1,0 +1,169 @@
+
+body {
+	height: 100vh;
+	width: 100%;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	margin: 0px;
+}
+
+footer{
+	background-color: rgba(2,89,121,255);
+	color: white;
+	bottom: 1%;
+	position: fixed;
+	width: 100%;
+	height: 3%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#logo {
+	width: 8em;
+	margin: 1%;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: url("strand_header.jpg") no-repeat center;
+	height: 15%;
+}
+
+.right {
+	display: flex;
+	align-items: center;
+	gap: 5%;
+	justify-content: flex-end;
+	margin-right: 2%;
+}
+
+#pageName {
+	float: right;
+	margin: 2%;
+	font-size: 4em;
+	color:rgba(2,89,121,255);
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+.homebutton {
+	display: inline-block;
+	margin: 2%;
+}
+
+#home {
+	width: 7em;
+	color: rgba(2,89,121,255);
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 80vh;
+	width: 100%;
+}
+
+.description {
+	text-align: center;
+	width: 80%;
+	margin-bottom: 5%;
+}
+
+.subMain {
+	display: flex;
+	gap: 10%;
+	justify-content: center;
+}
+
+.nurMelden, .loginBereich {
+	text-align: center;
+	width: 50%;
+}
+
+ul{
+	text-align: left;
+}
+
+.content {
+	display: flex;
+	justify-content: center;
+	width: 80%;
+}
+
+.eingabe {
+	border-collapse: collapse;
+    width: 40%;
+}
+
+#eingabe {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.action {
+	width: auto;
+	margin-top: 3%;
+	font-size: 1em;
+}
+
+.eingabe td {
+	border: none;
+	white-space: nowrap;
+	text-align: right;
+}
+
+table.netzliste {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+.netzliste th, td {
+    border: 1px solid rgba(208,203,209,255);
+    padding: 2%;
+    text-align: center;
+}
+
+.netzliste th {
+    text-align: center;
+    background-color: rgba(2,89,121,255);
+    color: rgba(195,156,94,255);
+}
+
+.netzliste td.nr {
+    background-color: rgba(195,156,94,255);
+    color: rgba(2,89,121,255);
+    text-align: center;
+    font-weight: bold;
+    width: 8%;
+}
+
+#icon {
+	width: 2em;
+}
+
+.link {
+	color: rgba(2,89,121,255);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.iconLink{
+	text-decoration: none;
+}
+
+body .ui-message.ui-message-info{
+	color: #B71C1C;
+	border-color: #EF5350;
+	background: #FFCDD2;
+}
+
+body .ui-message.ui-message-info .ui-message-info-icon {
+	color: #B71C1C;
+}

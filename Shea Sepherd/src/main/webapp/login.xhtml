@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Shea Sepherd</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+</h:head>
+
+<h:body>
+
+	<div class="header">
+		<img id="logo" src="logo.png" alt="Logo"/>
+		<div class="right">
+		<h:form styleClass="homebutton">
+			<h:commandLink  action="index?faces-redirect=true">
+				<img id="home" src="homebutton.png"/>
+			</h:commandLink>
+		</h:form>
+		<h1 id="pageName">Shea Sepherd</h1>
+		</div>
+	</div>
+
+	<div class="main">
+	
+	<div class="description">
+		<h1>Login</h1>
+		<p>Bitte melden Sie sich an, um weitere Funktionen zu nutzen.</p>
+	</div>
+	
+	<div class="content">
+	
+	<h:form>
+		
+		<p:panelGrid columns="2" styleClass="eingabe">
+		
+				<p:outputLabel value="Benutzername: " for="bname"/>
+				<p:inputText id="bname" value="#{loginController.benutzername}" size="25" required="true">
+					<f:event type="jakarta.faces.event.PostValidateEvent" listener="#{loginController.postValidateBenutzername}"/>
+				</p:inputText>
+
+				<p:outputLabel value="Passwort: " for="pwort" />
+				<p:password id="pwort" value="#{loginController.passwort}" required="true" validator="#{loginController.validateLogin}" size="25"/>
+
+		</p:panelGrid>
+
+      	<p:message for="bname"><p:autoUpdate /></p:message>
+      	<p:message for="pwort"><p:autoUpdate /></p:message>
+      	
+		<p:commandButton styleClass="action" value="Login" action="#{loginController.login}"/>
+		
+	</h:form>
+	
+</div>	
+</div>
+
+</h:body>
+
+<footer>
+<p>Diese Seite ist nur ein PROTOTYP! Hier erfolgt der Verweis zum Impressum.</p>
+</footer>
+
+</html>
