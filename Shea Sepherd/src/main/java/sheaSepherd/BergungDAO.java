@@ -9,12 +9,14 @@ import java.util.List;
 @ApplicationScoped
 public class BergungDAO {
 
+	
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("sheaSepherdPersistenceUnit");
-
+    
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    
     public void bergungSpeichern(Bergung bergung) {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
@@ -44,4 +46,5 @@ public class BergungDAO {
         em.close();
         return netze;
     }
+    
 }

@@ -6,9 +6,9 @@ import jakarta.inject.Named;
 
 @Named
 @ViewScoped
-public class NavigationController
-             implements Serializable
-{
+public class NavigationController implements Serializable{
+	
+	
 	public String home() {
         return "index?faces-redirect=true";
     }
@@ -28,4 +28,5 @@ public class NavigationController
     public String funktionen() {
         return "funktionen?faces-redirect=true";
     }
+    
 }

@@ -15,13 +15,7 @@ public class Bergung {
     @ManyToOne
     private Netz netz;
 
-    public Bergung() {}
-
-    public Bergung(Benutzer benutzer, Netz netz) {
-        this.benutzer = benutzer;
-        this.netz = netz;
-    }
-
+    
     public int getId() {
         return id;
     }
@@ -41,4 +35,15 @@ public class Bergung {
     public void setNetz(Netz netz) {
         this.netz = netz;
     }
+    
+    
+    public Bergung() {
+    	
+    }
+
+    public Bergung(Benutzer benutzer, Netz netz) {
+        this.benutzer = benutzer;
+        this.netz = netz;
+    }
+
 }

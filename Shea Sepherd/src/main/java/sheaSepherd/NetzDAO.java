@@ -10,16 +10,17 @@ public class NetzDAO {
 	
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("sheaSepherdPersistenceUnit");
 
-    private EntityManager getEntityManager() {
-        return emf.createEntityManager();
+	
+	private EntityManager getEntityManager() {
+    	return emf.createEntityManager();
     }
 
-    public void netzSpeichern(Netz netz) {
-        EntityManager em = getEntityManager();
-            em.getTransaction().begin();
-            em.persist(netz);
-            em.getTransaction().commit();
-            em.close();
+	public void netzSpeichern(Netz netz) {
+		EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(netz);
+        em.getTransaction().commit();
+        em.close();
     }
     
     public Netz netzAktualisieren(Netz netz) {
@@ -30,7 +31,6 @@ public class NetzDAO {
         em.close();
         return aktNetz;
     }
-    
     
     public Netz findeNetz(int nr) {
         EntityManager em = getEntityManager();

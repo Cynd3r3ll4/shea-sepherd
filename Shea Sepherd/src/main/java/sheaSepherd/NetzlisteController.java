@@ -23,23 +23,50 @@ public class NetzlisteController implements Serializable{
 	@Inject
 	private BenutzerDAO benutzerDAO;
 
-    private Netz neuesNetz = new Netz();
 	
-	public String netzMelden () {
+    private Netz neuesNetz = new Netz();
+    
+    
+    public Netz getNeuesNetz() {
+        return neuesNetz;
+    }
+
+    public void setNeuesNetz(Netz neuesNetz) {
+        this.neuesNetz = neuesNetz;
+    }
+
+	public BergungDAO getBergungDAO() {
+		return bergungDAO;
+	}
+
+	public void setBergungDAO(BergungDAO bergungDAO) {
+		this.bergungDAO = bergungDAO;
+	}
+
+	public LoginController getLoginc() {
+		return loginc;
+	}
+
+	public void setLoginc(LoginController loginc) {
+		this.loginc = loginc;
+	}
+	
+	
+	public String netzMelden() {
 		neuesNetz.setStatus(Status.GEMELDET);
-        netzDAO.netzSpeichern(neuesNetz); // Hier wird das Netz in die DB gespeichert
-        neuesNetz = new Netz(); // Eingabefelder leeren
+        netzDAO.netzSpeichern(neuesNetz);
+        neuesNetz = new Netz(); 
         return "nurGemeldet?faces-redirect=true";
 	}
 	
-	public String netzMeldenLogin () {
+	public String netzMeldenLogin() {
 		neuesNetz.setStatus(Status.GEMELDET);
-        netzDAO.netzSpeichern(neuesNetz); // Hier wird das Netz in die DB gespeichert
-        neuesNetz = new Netz(); // Eingabefelder leeren
+        netzDAO.netzSpeichern(neuesNetz);
+        neuesNetz = new Netz();
         return "funktionen?faces-redirect=true";
 	}
 	
-	public String bergungAnmelden (Netz netz) {
+	public String bergungAnmelden(Netz netz) {
 		Benutzer aktuellerBenutzer = benutzerDAO.benutzerFindenOhnePW(loginc.getBenutzer().getBenutzername());
 		netz = netzDAO.findeNetz(netz.getNr());
 		netz = netzDAO.netzAktualisieren(netz);
@@ -50,54 +77,30 @@ public class NetzlisteController implements Serializable{
         return "auftraege?faces-redirect=true";
     }
 	
-	public void netzGeborgen (Netz netz) {
+	public void netzGeborgen(Netz netz) {
 		netz = netzDAO.findeNetz(netz.getNr());
         netz.setStatus(Status.GEBORGEN);
         netzDAO.netzAktualisieren(netz);
         bergungDAO.bergungLoeschen(netz);
     }
 	
-	 public void netzVerschollen (Netz netz) {
-		 netz = netzDAO.findeNetz(netz.getNr());
-	     netz.setStatus(Status.VERSCHOLLEN);
-	     netzDAO.netzAktualisieren(netz);
-	     bergungDAO.bergungLoeschen(netz);
+	public void netzVerschollen(Netz netz) {
+		netz = netzDAO.findeNetz(netz.getNr());
+	    netz.setStatus(Status.VERSCHOLLEN);
+	    netzDAO.netzAktualisieren(netz);
+	    bergungDAO.bergungLoeschen(netz);
 	}
 	
-	public boolean statusGemeldet (Netz netz) {
+	public boolean statusGemeldet(Netz netz) {
 		return netz.getStatus() == Status.GEMELDET;
 	}
 	
-	 public List<Netz> getNetzliste() {
-		 return netzDAO.getNetze();
-	    }
+	public List<Netz> getNetzliste() {
+		return netzDAO.getNetze();
+	}
 	
-	 public List<Netz> getNetzeZurBergung() {
-	        return bergungDAO.getNetzeZurBergungBenutzer(loginc.getBenutzer());
-	    }
-	
-	public Netz getNeuesNetz () {
-        return neuesNetz;
-    }
-
-    public void setNeuesNetz (Netz neuesNetz) {
-        this.neuesNetz = neuesNetz;
-    }
-
-	public BergungDAO getBergungDAO () {
-		return bergungDAO;
-	}
-
-	public void setBergungDAO (BergungDAO bergungDAO) {
-		this.bergungDAO = bergungDAO;
-	}
-
-	public LoginController getLoginc () {
-		return loginc;
-	}
-
-	public void setLoginc (LoginController loginc) {
-		this.loginc = loginc;
+	public List<Netz> getNetzeZurBergung() {
+		return bergungDAO.getNetzeZurBergungBenutzer(loginc.getBenutzer());
 	}
 
 }

@@ -14,12 +14,13 @@ public class BenutzerDAO {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
 
     public List<Benutzer> getAlleBenutzer() {
-        EntityManager em = getEntityManager();
-        List<Benutzer> benutzerListe = em.createQuery("SELECT b FROM Benutzer b", Benutzer.class).getResultList();
-        em.close();
-        return benutzerListe;
+    	EntityManager em = getEntityManager();
+    	List<Benutzer> benutzerListe = em.createQuery("SELECT b FROM Benutzer b", Benutzer.class).getResultList();
+    	em.close();
+    	return benutzerListe;
     }
 
     public Benutzer benutzerFinden(String benutzername, String passwort) {

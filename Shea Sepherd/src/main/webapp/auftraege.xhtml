@@ -35,6 +35,7 @@
 	<div class="content">
 		<h:dataTable var="netz" value="#{netzlisteController.netzeZurBergung}"
                styleClass="netzliste" columnClasses="nr">
+    		
     		<h:column>
       			<f:facet name="header">Nr</f:facet>
      			<h:outputText value="#{netz.nr}"/>

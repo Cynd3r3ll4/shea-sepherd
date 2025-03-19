@@ -23,13 +23,6 @@ public class LoginController implements Serializable {
 	private Benutzer benutzer;
 	private String passwort;
 	
-	
-	public String login() {
-		Benutzer gefundenerBenutzer = benutzerDAO.benutzerFinden(benutzername, passwort);
-		this.benutzer = gefundenerBenutzer;
-		return "funktionen?faces-redirect=true";
-	}
-
 	public String getBenutzername() {
 		return benutzername;
 	}
@@ -55,15 +48,21 @@ public class LoginController implements Serializable {
 	}
 	
 	
-	public void postValidateBenutzername (ComponentSystemEvent ev) throws AbortProcessingException {
+	public String login() {
+		Benutzer gefundenerBenutzer = benutzerDAO.benutzerFinden(benutzername, passwort);
+		this.benutzer = gefundenerBenutzer;
+		return "funktionen?faces-redirect=true";
+	}
+
+	public void postValidateBenutzername(ComponentSystemEvent ev) throws AbortProcessingException {
 		UIInput temp = (UIInput)ev.getComponent();
 		this.benutzername = (String)temp.getValue();
 	}
 	
-	public void validateLogin (FacesContext context, UIComponent component, Object value) throws ValidatorException {
+	public void validateLogin(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         Benutzer temp = benutzerDAO.benutzerFinden(benutzername, (String) value);
         if (temp != null) {
-            return; // Benutzername + Passwort stimmen überein
+            return;
         }
         throw new ValidatorException(new FacesMessage("Der eingegebene Benutzername oder das Passwort sind falsch."));
     }

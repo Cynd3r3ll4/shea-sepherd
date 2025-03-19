@@ -16,49 +16,57 @@ public class Benutzer implements Serializable {
 	private String vorname;
 	private String benutzername;
 	private String passwort;
+	private String telefonnummer;
 	
 	@OneToMany(mappedBy = "benutzer", cascade = CascadeType.ALL)
 	private List<Bergung> bergungen = new ArrayList<>();
 	
 	
-	public int getNr () {
+	public int getNr() {
 		return nr;
 	}
 
-	public void setNr (int nr) {
+	public void setNr(int nr) {
 		this.nr = nr;
 	}
 
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
-	public void setName (String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getVorname () {
+	public String getVorname() {
 		return vorname;
 	}
 
-	public void setVorname (String vorname) {
+	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
 
-	public String getBenutzername () {
+	public String getBenutzername() {
 		return benutzername;
 	}
 	
-	public void setBenutzername (String benutzername) {
+	public void setBenutzername(String benutzername) {
 		this.benutzername = benutzername;
 	}
 	
-	public String getPasswort () {
+	public String getPasswort() {
 		return passwort;
 	}
 	
-	public void setPasswort (String passwort) {
+	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+	}
+	public String getTelefonnummer() {
+		return telefonnummer;
+	}
+
+	public void setTelefonnummer(String telefonnummer) {
+		this.telefonnummer = telefonnummer;
 	}
 	
 	public List<Bergung> getBergungen() {
@@ -99,4 +107,6 @@ public class Benutzer implements Serializable {
 		}
 		return false;
 	}
+
+	
 }
