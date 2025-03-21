@@ -19,6 +19,9 @@ public class LoginController implements Serializable {
     @Inject
     private BenutzerDAO benutzerDAO;
     
+    @Inject
+    private NavigationController navi;
+    
 	private String benutzername;
 	private Benutzer benutzer;
 	private String passwort;
@@ -51,7 +54,7 @@ public class LoginController implements Serializable {
 	public String login() {
 		Benutzer gefundenerBenutzer = benutzerDAO.benutzerFinden(benutzername, passwort);
 		this.benutzer = gefundenerBenutzer;
-		return "funktionen?faces-redirect=true";
+		return navi.funktionen();
 	}
 
 	public void postValidateBenutzername(ComponentSystemEvent ev) throws AbortProcessingException {

@@ -16,6 +16,10 @@ public class NavigationController implements Serializable{
 	public String netzMelden() {
         return "nurMelden?faces-redirect=true";
     }
+	
+	public String netzGemeldet() {
+		return "nurGemeldet?faces-redirect=true";
+	}
     
     public String login() {
         return "login?faces-redirect=true";

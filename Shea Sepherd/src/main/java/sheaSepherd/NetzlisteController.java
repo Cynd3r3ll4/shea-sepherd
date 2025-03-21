@@ -21,6 +21,9 @@ public class NetzlisteController implements Serializable{
 	private LoginController loginc;
 	
 	@Inject
+	private NavigationController navi;
+	
+	@Inject
 	private BenutzerDAO benutzerDAO;
 
 	
@@ -56,14 +59,14 @@ public class NetzlisteController implements Serializable{
 		neuesNetz.setStatus(Status.GEMELDET);
         netzDAO.netzSpeichern(neuesNetz);
         neuesNetz = new Netz(); 
-        return "nurGemeldet?faces-redirect=true";
+        return navi.netzGemeldet();
 	}
 	
 	public String netzMeldenLogin() {
 		neuesNetz.setStatus(Status.GEMELDET);
         netzDAO.netzSpeichern(neuesNetz);
         neuesNetz = new Netz();
-        return "funktionen?faces-redirect=true";
+        return navi.funktionen();
 	}
 	
 	public String bergungAnmelden(Netz netz) {
@@ -74,7 +77,7 @@ public class NetzlisteController implements Serializable{
         bergungDAO.bergungSpeichern(bergung);
 		netz.setStatus(Status.BERGUNG);
 		netzDAO.netzAktualisieren(netz);
-        return "auftraege?faces-redirect=true";
+        return navi.aufträge();
     }
 	
 	public void netzGeborgen(Netz netz) {
