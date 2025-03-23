@@ -65,7 +65,7 @@ public class NetzlisteController implements Serializable{
 	public String netzMeldenLogin() {
 		neuesNetz.setStatus(Status.GEMELDET);
         netzDAO.netzSpeichern(neuesNetz);
-        neuesNetz = new Netz();
+        neuesNetz = new Netz(); 
         return navi.funktionen();
 	}
 	

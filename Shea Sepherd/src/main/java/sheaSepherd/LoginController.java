@@ -51,12 +51,6 @@ public class LoginController implements Serializable {
 	}
 	
 	
-	public String login() {
-		Benutzer gefundenerBenutzer = benutzerDAO.benutzerFinden(benutzername, passwort);
-		this.benutzer = gefundenerBenutzer;
-		return navi.funktionen();
-	}
-
 	public void postValidateBenutzername(ComponentSystemEvent ev) throws AbortProcessingException {
 		UIInput temp = (UIInput)ev.getComponent();
 		this.benutzername = (String)temp.getValue();
@@ -69,5 +63,5 @@ public class LoginController implements Serializable {
         }
         throw new ValidatorException(new FacesMessage("Der eingegebene Benutzername oder das Passwort sind falsch."));
     }
-
+	
 }
